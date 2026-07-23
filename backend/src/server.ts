@@ -2,6 +2,8 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import pool from './config/db';
+import employeesRouter from './routes/employees';
+import shiftsRouter from './routes/shifts';
 
 dotenv.config();
 
@@ -29,12 +31,12 @@ app.get('/health/db', async (req: Request, res: Response) => {
     });
   } catch (error) {
     console.error('Database connection error:', error);
-    res.status(500).json({
-      status: 'error',
-      message: 'Database connection failed'
-    });
+    res.status(500).json({ status: 'error', message: 'Database connection failed' });
   }
 });
+
+app.use('/employees', employeesRouter);
+app.use('/shifts', shiftsRouter);
 
 app.listen(PORT, () => {
   console.log(`ShiftSwap backend running on http://localhost:${PORT}`);
