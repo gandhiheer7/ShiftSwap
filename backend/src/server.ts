@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import pool from './config/db';
 
 dotenv.config();
 
@@ -16,6 +17,23 @@ app.get('/health', (req: Request, res: Response) => {
     message: 'ShiftSwap API is running',
     timestamp: new Date().toISOString()
   });
+});
+
+app.get('/health/db', async (req: Request, res: Response) => {
+  try {
+    const result = await pool.query('SELECT NOW() AS current_time');
+    res.status(200).json({
+      status: 'ok',
+      message: 'Database connection successful',
+      db_time: result.rows[0].current_time
+    });
+  } catch (error) {
+    console.error('Database connection error:', error);
+    res.status(500).json({
+      status: 'error',
+      message: 'Database connection failed'
+    });
+  }
 });
 
 app.listen(PORT, () => {
