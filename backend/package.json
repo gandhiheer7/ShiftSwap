@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "migrate": "psql -U postgres -d shiftswap -f src/db/migrations/001_create_employees_and_shifts.sql",
+    "seed": "ts-node src/db/seed.ts"
   },
   "dependencies": {
     "express": "^4.19.2",
