@@ -8,6 +8,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "migrate": "psql -U postgres -d shiftswap -f src/db/migrations/001_create_employees_and_shifts.sql",
+    "migrate:002": "psql -U postgres -d shiftswap -f src/db/migrations/002_create_swap_requests.sql",
     "seed": "ts-node src/db/seed.ts"
   },
   "dependencies": {

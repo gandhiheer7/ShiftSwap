@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import pool from './config/db';
 import employeesRouter from './routes/employees';
 import shiftsRouter from './routes/shifts';
+import swapsRouter from './routes/swaps';
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.get('/health/db', async (req: Request, res: Response) => {
 
 app.use('/employees', employeesRouter);
 app.use('/shifts', shiftsRouter);
+app.use('/swaps', swapsRouter);
 
 app.listen(PORT, () => {
   console.log(`ShiftSwap backend running on http://localhost:${PORT}`);
