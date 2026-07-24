@@ -43,7 +43,7 @@ async function seed() {
     const dayOfWeek = today.getDay();
     const monday = new Date(today);
     monday.setDate(today.getDate() - ((dayOfWeek + 6) % 7));
-    monday.setHours(0, 0, 0, 0);
+    monday.setUTCHours(0, 0, 0, 0);
 
     const shiftTemplates = [
       { startHour: 7, endHour: 11 },
@@ -64,10 +64,10 @@ async function seed() {
 
         for (const emp of assigned) {
           const startTime = new Date(dayDate);
-          startTime.setHours(template.startHour, 0, 0, 0);
+          startTime.setUTCHours(template.startHour, 0, 0, 0);
 
           const endTime = new Date(dayDate);
-          endTime.setHours(template.endHour, 0, 0, 0);
+          endTime.setUTCHours(template.endHour, 0, 0, 0);
 
           await client.query(
             `INSERT INTO shifts (employee_id, role_required, start_time, end_time, status)

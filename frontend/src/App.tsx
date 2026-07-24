@@ -1,10 +1,16 @@
+import { useState } from 'react';
 import ShiftCalendar from './components/ShiftCalendar';
+import OpenSwapsList from './components/OpenSwapsList';
 import EmployeeSelector from './components/EmployeeSelector';
 import Logo from './components/logo';
 import { CurrentEmployeeProvider } from './context/CurrentEmployeeContext';
 import './App.css';
 
+type Tab = 'calendar' | 'openSwaps';
+
 function App() {
+  const [activeTab, setActiveTab] = useState<Tab>('calendar');
+
   return (
     <CurrentEmployeeProvider>
       <div className="app">
@@ -18,8 +24,24 @@ function App() {
           </div>
           <EmployeeSelector />
         </header>
+
+        <nav className="app-tabs">
+          <button
+            className={activeTab === 'calendar' ? 'app-tab active' : 'app-tab'}
+            onClick={() => setActiveTab('calendar')}
+          >
+            Calendar
+          </button>
+          <button
+            className={activeTab === 'openSwaps' ? 'app-tab active' : 'app-tab'}
+            onClick={() => setActiveTab('openSwaps')}
+          >
+            Open Swaps
+          </button>
+        </nav>
+
         <main>
-          <ShiftCalendar />
+          {activeTab === 'calendar' ? <ShiftCalendar /> : <OpenSwapsList />}
         </main>
       </div>
     </CurrentEmployeeProvider>

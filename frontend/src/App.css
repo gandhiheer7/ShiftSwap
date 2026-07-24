@@ -403,3 +403,195 @@ main {
   align-items: center;
   gap: 10px;
 }
+
+/* ---- Tabs ---- */
+
+.app-tabs {
+  display: flex;
+  gap: 4px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 16px 24px 0 24px;
+}
+
+.app-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 4px;
+  margin-right: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.app-tab:hover {
+  color: var(--color-ink);
+}
+
+.app-tab.active {
+  color: var(--color-ink);
+  border-bottom-color: var(--color-cashier);
+}
+
+/* ---- Open swaps list ---- */
+
+.open-swaps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.swap-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 2px rgba(28, 30, 38, 0.04);
+}
+
+.swap-card-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.swap-card-role-badge {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.swap-card-role-badge[data-role='Cashier'] {
+  background: rgba(91, 127, 219, 0.12);
+  color: #3d5cad;
+}
+
+.swap-card-role-badge[data-role='Barista'] {
+  background: rgba(79, 166, 137, 0.14);
+  color: #337a63;
+}
+
+.swap-card-role-badge[data-role='Cleaner'] {
+  background: rgba(216, 155, 74, 0.16);
+  color: #a5701f;
+}
+
+.swap-card-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.swap-card-time {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.swap-card-requester {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin-top: 2px;
+}
+
+.swap-card-reason {
+  font-size: 13px;
+  color: var(--color-muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.swap-card-action {
+  flex-shrink: 0;
+}
+
+.swap-card-tag {
+  font-size: 12px;
+  color: var(--color-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ---- Claim result banner ---- */
+
+.claim-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+
+.claim-banner-success {
+  background: rgba(79, 166, 137, 0.1);
+}
+
+.claim-banner-failure {
+  background: rgba(179, 67, 47, 0.08);
+}
+
+.claim-banner-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.claim-banner-success .claim-banner-icon {
+  background: #4fa689;
+}
+
+.claim-banner-failure .claim-banner-icon {
+  background: #b3432f;
+}
+
+.claim-banner-content {
+  flex: 1;
+  font-size: 13px;
+}
+
+.claim-banner-content strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-ink);
+}
+
+.claim-banner-content p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.claim-banner-content ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #b3432f;
+}
+
+.claim-banner-content li {
+  margin-bottom: 2px;
+}
+
+.claim-banner-dismiss {
+  background: none;
+  border: none;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--color-muted);
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.claim-banner-dismiss:hover {
+  color: var(--color-ink);
+}

@@ -36,16 +36,27 @@ export async function validateSwapClaim(
   );
 
   if (overlapResult.rows.length > 0) {
-    const conflictingShift = overlapResult.rows[0];
-    reasons.push(
-      `Overlaps with existing shift from ${conflictingShift.start_time.toISOString()} to ${conflictingShift.end_time.toISOString()}`
-    );
-  }
+  const conflictingShift = overlapResult.rows[0];
+  reasons.push(
+    `Overlaps with existing shift from ${formatReadableDateTime(conflictingShift.start_time)} to ${formatReadableDateTime(conflictingShift.end_time)}`
+  );
+}
 
   // Rule 2: Weekly hour limit - would this shift push total weekly hours over the employee's max?
   const weekStart = getWeekStart(new Date(shiftToClaim.start_time));
   const weekEnd = new Date(weekStart);
   weekEnd.setDate(weekEnd.getDate() + 7);
+
+function formatReadableDateTime(date: Date): string {
+  return date.toLocaleString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZone: 'UTC'
+  });
+}
 
   const hoursResult = await client.query(
     `SELECT COALESCE(SUM(EXTRACT(EPOCH FROM (end_time - start_time)) / 3600), 0) AS total_hours
